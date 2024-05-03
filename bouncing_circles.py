@@ -45,8 +45,8 @@ def set_axis():
     ax.set_title("Bouncing circles")
     ax.set_xlabel("x")
     ax.set_ylabel("y")
-    ax.set_xlim(xmin, xmax)
-    ax.set_ylim(ymin, ymax)
+    ax.set_xlim(x_min, x_max)
+    ax.set_ylim(y_min, y_max)
     ax.set_aspect("equal")
     ax.grid()
 
@@ -54,7 +54,7 @@ def set_axis():
 def update(f):
     ax.cla()  # Clear ax
     set_axis()
-    ax.text(xmin, ymax * 0.9, "Step=" + str(f))
+    ax.text(x_min, y_max * 0.9, "Step=" + str(f))
 
     global circles
     for obj in circles:
@@ -66,12 +66,12 @@ def update(f):
 
 
 # Global variables
-xmin = -10.
-xmax = 10.
-ymin = -10.
-ymax = 10.
-rmax = 10.
-rmin = 1.
+x_min = -10.
+x_max = 10.
+y_min = -10.
+y_max = 10.
+r_max = 10.
+r_min = 1.
 drad = 0.1  # Step to change radius
 sclr = 0.5  # Scalar of velocity
 reverse_h = np.array([[-1, 0], [0, 1]])  # Matrix of horizontal reverse
@@ -80,7 +80,7 @@ reverse_v = np.array([[1, 0], [0, -1]])  # Matrix of vertical reverse
 # Generate circles
 circles = []
 for i in range(10):
-    circle = Circle(xmin, xmax, ymin, ymax, sclr, rmin, rmax, drad)
+    circle = Circle(x_min, x_max, y_min, y_max, sclr, r_min, r_max, drad)
     circles.append(circle)
 
 # Generate figure and axes
@@ -89,5 +89,5 @@ ax = fig.add_subplot(111)
 
 # Draw animation
 set_axis()
-anim = animation.FuncAnimation(fig, update, interval=100)
+anim = animation.FuncAnimation(fig, update, interval=100, save_count=100)
 plt.show()
